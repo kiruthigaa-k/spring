@@ -20,12 +20,9 @@ public class StudentController {
 	@PostMapping
 	public String saveStudentInformation(@RequestBody Student student) {
 		if(StringUtils.isBlank(student.getLastName())) {
-			return "Last Name is a required field";
+			throw new InvalidFieldException("Last Name is a required field");
 		}
 		return "Data is saved!!!";
 	}
-	@ExceptionHandler
-	public String handleInvalidFieldException(InvalidFieldException exception) {
-		return exception.getMessage();
-	}
+	
 }
